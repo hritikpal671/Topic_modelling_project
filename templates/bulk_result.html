@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .result {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .result h2 {
+            margin-top: 0;
+        }
+        .topics {
+            list-style: none;
+            padding: 0;
+        }
+        .topics li {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .true {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .false {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .btn {
+            display: block;
+            width: 100px;
+            margin: 20px auto 0;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bulk Prediction Results</h1>
+        {% for result in results %}
+        <div class="result">
+            <h2>{{ result.title }}</h2>
+            <p>{{ result.abstract }}</p>
+            <ul class="topics">
+                <li class="{{ 'true' if result.topics['Computer Science'] else 'false' }}">Computer Science: {{ 'Yes' if result.topics['Computer Science'] else 'No' }}</li>
+                <li class="{{ 'true' if result.topics['Physics'] else 'false' }}">Physics: {{ 'Yes' if result.topics['Physics'] else 'No' }}</li>
+                <li class="{{ 'true' if result.topics['Mathematics'] else 'false' }}">Mathematics: {{ 'Yes' if result.topics['Mathematics'] else 'No' }}</li>
+                <li class="{{ 'true' if result.topics['Statistics'] else 'false' }}">Statistics: {{ 'Yes' if result.topics['Statistics'] else 'No' }}</li>
+                <li class="{{ 'true' if result.topics['Quantitative Biology'] else 'false' }}">Quantitative Biology: {{ 'Yes' if result.topics['Quantitative Biology'] else 'No' }}</li>
+                <li class="{{ 'true' if result.topics['Quantitative Finance'] else 'false' }}">Quantitative Finance: {{ 'Yes' if result.topics['Quantitative Finance'] else 'No' }}</li>
+            </ul>
+        </div>
+        {% endfor %}
+        <a href="/" class="btn">Predict Another</a>
+    </div>
+</body>
+</html>
